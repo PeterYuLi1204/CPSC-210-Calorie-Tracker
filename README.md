@@ -28,6 +28,6 @@ being able to tell them if they've met goals that they set.
 
 - "As a user, I want to be able to select a day and add the foods I consumed that day"
 - "As a user, I want to be able to view all the foods I ate in a particular day"
-- "As a user, I want to be able to select a food and specify the amount of calories and nutrients it provides"
+- "As a user, I want to be able to see the food with the most calories that I ate a particular day"
 - "As a user, I want to be able to see how many calories I consume on average" 
-- "As a user, I want to be able to see how many grams of protein and sugar I consumed on a particular day"
+- "As a user, I want to be able to see how many grams of protein I consumed on a particular day"
