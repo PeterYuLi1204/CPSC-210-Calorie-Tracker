@@ -7,7 +7,7 @@ public class Food {
     private double sugar;
     private double protein;
 
-    // REQUIRES: name to be not empty and calories, fat, sugar, and protein to be non-negative
+    // REQUIRES: name not empty and calories, fat, sugar, and protein >= 0.
     // EFFECTS: Constructs a new food with calories, grams of fat, grams of sugar, and grams of protein
     public Food(String name, int calories, double fat, double sugar, double protein) {
         this.name = name;
@@ -17,13 +17,39 @@ public class Food {
         this.protein = protein;
     }
 
-    // EFFECTS: Prints the name of the food and all of its nutritional values
-    public void printFood() {
-        System.out.println("Name: " + getName());
-        System.out.println("Calories: " + getCalories());
-        System.out.println("Grams of fat: " + getFat());
-        System.out.println("Grams of sugar: " + getSugar());
-        System.out.println("Grams of protein: " + getProtein());
+    // REQUIRES: name not empty
+    // MODIFIES: this
+    // EFFECTS: sets the name of the food to the given name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // REQUIRES: calories >= 0
+    // MODIFIES: this
+    // EFFECTS: sets the calorie count of the food to the given calories
+    public void setCalories(int calories) {
+        this.calories = calories;
+    }
+
+    // REQUIRES: fat >= 0
+    // MODIFIES: this
+    // EFFECTS: sets the grams of fat of the food to the given grams of fat
+    public void setFat(double fat) {
+        this.fat = fat;
+    }
+
+    // REQUIRES: sugar >= 0
+    // MODIFIES: this
+    // EFFECTS: sets the grams of sugar of the food to the given grams of sugar
+    public void setSugar(double sugar) {
+        this.sugar = sugar;
+    }
+
+    // REQUIRES: protein >= 0
+    // MODIFIES: this
+    // EFFECTS: sets the grams of protein of the food to the given grams of protein
+    public void setProtein(double protein) {
+        this.protein = protein;
     }
 
     // EFFECTS: Returns the name of the food
