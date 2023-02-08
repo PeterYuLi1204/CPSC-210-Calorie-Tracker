@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Diary {
+
     private List<DailyLog> dailyLogs;
 
     // EFFECTS: Constructs a new calendar with no days in it
@@ -25,6 +26,7 @@ public class Diary {
     }
 
     // TODO
+    // REQUIRES: At least one daily log in the diary
     // EFFECTS: Returns the average number of calories consumed per day rounded down to nearest whole number
     public int getAverageCalories() {
         int totalCalories = 0;
@@ -36,6 +38,7 @@ public class Diary {
         return totalCalories / dailyLogs.size();
     }
 
+    // REQUIRES: At least one daily log in the diary
     // EFFECTS: Returns the average grams of fat consumed per day
     public double getAverageFat() {
         double totalFat = 0;
@@ -47,6 +50,7 @@ public class Diary {
         return totalFat / dailyLogs.size();
     }
 
+    // REQUIRES: At least one daily log in the diary
     // EFFECTS: Returns the average grams of sugar consumed per day
     public double getAverageSugar() {
         double totalSugar = 0;
@@ -58,6 +62,7 @@ public class Diary {
         return totalSugar / dailyLogs.size();
     }
 
+    // REQUIRES: At least one daily log in the diary
     // EFFECTS: Returns the average grams of protein consumed per day
     public double getAverageProtein() {
         double totalProtein = 0;

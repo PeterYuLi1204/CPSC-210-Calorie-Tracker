@@ -1,6 +1,7 @@
 package model;
 
 public class Food {
+
     private String name;
     private int calories;
     private double fat;

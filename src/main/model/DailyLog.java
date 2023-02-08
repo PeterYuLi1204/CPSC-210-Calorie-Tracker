@@ -1,10 +1,13 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DailyLog {
+
     private List<Food> foodLog;
+    private Date date;
 
     // EFFECTS: Constructs a new day with an empty record of foods eaten
     public DailyLog() {
