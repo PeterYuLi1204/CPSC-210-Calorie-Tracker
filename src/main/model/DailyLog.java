@@ -1,17 +1,19 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class DailyLog {
 
     private List<Food> foodLog;
-    private Date date;
+    private LocalDate date;
 
+    // REQUIRES: year, month, and day must be a valid date
     // EFFECTS: Constructs a new day with an empty record of foods eaten
-    public DailyLog() {
+    public DailyLog(int year, int month, int day) {
         foodLog = new ArrayList<>();
+        date = LocalDate.of(year, month, day);
     }
 
     // MODIFIES: this
@@ -27,12 +29,28 @@ public class DailyLog {
         foodLog.remove(index);
     }
 
+    // EFFECTS: Compares the dates of the two given logs and returns the difference
+    public static int compareDailyLogs(DailyLog log1, DailyLog log2) {
+        return log1.getDate().compareTo(log2.getDate());
+    }
+
+    // REQUIRES: year, month, and day must be a valid date
+    // MODIFIES: this
+    // EFFECTS: Changes the date of the daily log to the given date
+    public void setDate(int year, int month, int day) {
+        date = LocalDate.of(year, month, day);
+    }
+
     // EFFECTS: Returns the record of foods eaten
     public List<Food> getFoodLog() {
         return foodLog;
     }
 
-    // TODO
+    // EFFECTS: Returns the date of the daily log
+    public LocalDate getDate() {
+        return date;
+    }
+
     // REQUIRES: At least one food item in the record of foods eaten
     //EFFECTS: Returns the food in record of foods eaten today with the most calories
     //         or the food with the most calories that appears first in the record in the case of a tie
@@ -48,7 +66,6 @@ public class DailyLog {
         return mostCalories;
     }
 
-    // TODO
     // REQUIRES: At least one food item in the record of foods eaten
     //EFFECTS: Returns the food in record of foods eaten today with the most grams of fat
     //         or the food with the most grams of fat that appears first in the record in the case of a tie
@@ -64,7 +81,6 @@ public class DailyLog {
         return mostFat;
     }
 
-    // TODO
     // REQUIRES: At least one food item in the record of foods eaten
     //EFFECTS: Returns the food in record of foods eaten today with the most grams of sugar
     //         or the food with the most grams of sugar that appears first in the record in the case of a tie
@@ -80,7 +96,6 @@ public class DailyLog {
         return mostSugar;
     }
 
-    // TODO
     // REQUIRES: At least one food item in the record of foods eaten
     //EFFECTS: Returns the food in record of foods eaten today with the most grams of protein
     //         or the food with the most grams of protein that appears first in the record in the case of a tie

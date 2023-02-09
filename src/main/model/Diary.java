@@ -13,64 +13,82 @@ public class Diary {
     }
 
     // MODIFIES: this
-    // EFFECTS: Adds the given day to the calendar
-    public void addDay(DailyLog dailyLog) {
+    // EFFECTS: Adds the given daily log to the diary then sorts the diary chronologically
+    public void addDailyLog(DailyLog dailyLog) {
         dailyLogs.add(dailyLog);
+        dailyLogs.sort(DailyLog::compareDailyLogs);
     }
 
-    // TODO
     // MODIFIES: this
     // EFFECTS: Removes the day at the given position from the calendar
-    public void removeDay(int index) {
+    public void removeDailyLog(int index) {
         dailyLogs.remove(index);
     }
 
-    // TODO
-    // REQUIRES: At least one daily log in the diary
-    // EFFECTS: Returns the average number of calories consumed per day rounded down to nearest whole number
+    // EFFECTS: Returns all daily logs in the diary
+    public List<DailyLog> getDailyLogs() {
+        return dailyLogs;
+    }
+
+    // EFFECTS: Returns the average number of calories consumed per day rounded down to the nearest whole number
+    //          or 0 if there are no daily logs
     public int getAverageCalories() {
-        int totalCalories = 0;
+        if (dailyLogs.size() > 0) {
+            int totalCalories = 0;
 
-        for (DailyLog dailyLog : dailyLogs) {
-            totalCalories += dailyLog.getTotalCalories();
+            for (DailyLog dailyLog : dailyLogs) {
+                totalCalories += dailyLog.getTotalCalories();
+            }
+
+            return totalCalories / dailyLogs.size();
         }
 
-        return totalCalories / dailyLogs.size();
+        return 0;
     }
 
-    // REQUIRES: At least one daily log in the diary
-    // EFFECTS: Returns the average grams of fat consumed per day
+    // EFFECTS: Returns the average grams of fat consumed per day or 0 if there are no daily logs
     public double getAverageFat() {
-        double totalFat = 0;
+        if (dailyLogs.size() > 0) {
+            double totalFat = 0;
 
-        for (DailyLog dailyLog : dailyLogs) {
-            totalFat += dailyLog.getTotalFat();
+            for (DailyLog dailyLog : dailyLogs) {
+                totalFat += dailyLog.getTotalFat();
+            }
+
+            return totalFat / dailyLogs.size();
         }
 
-        return totalFat / dailyLogs.size();
+        return 0;
     }
 
     // REQUIRES: At least one daily log in the diary
-    // EFFECTS: Returns the average grams of sugar consumed per day
+    // EFFECTS: Returns the average grams of sugar consumed per day or 0 if there are no daily logs
     public double getAverageSugar() {
-        double totalSugar = 0;
+        if (dailyLogs.size() > 0) {
+            double totalSugar = 0;
 
-        for (DailyLog dailyLog : dailyLogs) {
-            totalSugar += dailyLog.getTotalSugar();
+            for (DailyLog dailyLog : dailyLogs) {
+                totalSugar += dailyLog.getTotalSugar();
+            }
+
+            return totalSugar / dailyLogs.size();
         }
 
-        return totalSugar / dailyLogs.size();
+        return 0;
     }
 
-    // REQUIRES: At least one daily log in the diary
-    // EFFECTS: Returns the average grams of protein consumed per day
+    // EFFECTS: Returns the average grams of protein consumed per day or 0 if there are no daily logs
     public double getAverageProtein() {
-        double totalProtein = 0;
+        if (dailyLogs.size() > 0) {
+            double totalProtein = 0;
 
-        for (DailyLog dailyLog : dailyLogs) {
-            totalProtein += dailyLog.getTotalProtein();
+            for (DailyLog dailyLog : dailyLogs) {
+                totalProtein += dailyLog.getTotalProtein();
+            }
+
+            return totalProtein / dailyLogs.size();
         }
 
-        return totalProtein / dailyLogs.size();
+        return 0;
     }
 }
