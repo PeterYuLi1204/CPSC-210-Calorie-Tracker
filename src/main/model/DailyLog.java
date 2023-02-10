@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DailyLog {
 
-    private List<Food> foodLog;
+    private final List<Food> foodLog;
     private LocalDate date;
 
     // REQUIRES: year, month, and day must be a valid date
@@ -15,6 +15,14 @@ public class DailyLog {
         foodLog = new ArrayList<>();
         date = LocalDate.of(year, month, day);
     }
+
+    // EFFECTS: Compares the dates of the two given daily logs and returns the difference
+    //          in the largest quantity of time in which there is a difference starting from years
+    public static int compareDailyLogDates(DailyLog log1, DailyLog log2) {
+        return log1.getDate().compareTo(log2.getDate());
+    }
+
+    // Setters
 
     // MODIFIES: this
     // EFFECTS: Adds the given food to the record of foods eaten
@@ -29,17 +37,14 @@ public class DailyLog {
         foodLog.remove(index);
     }
 
-    // EFFECTS: Compares the dates of the two given logs and returns the difference
-    public static int compareDailyLogs(DailyLog log1, DailyLog log2) {
-        return log1.getDate().compareTo(log2.getDate());
-    }
-
     // REQUIRES: year, month, and day must be a valid date
     // MODIFIES: this
     // EFFECTS: Changes the date of the daily log to the given date
     public void setDate(int year, int month, int day) {
         date = LocalDate.of(year, month, day);
     }
+
+    // Getters
 
     // EFFECTS: Returns the record of foods eaten
     public List<Food> getFoodLog() {
@@ -112,30 +117,30 @@ public class DailyLog {
         return total;
     }
 
-    // EFFECTS: Returns the total grams of fat consumed today
+    // EFFECTS: Returns the total grams of fat consumed today rounded to 1 decimal place
     public double getTotalFat() {
         double total = 0.0;
         for (Food food : foodLog) {
             total += food.getFat();
         }
-        return total;
+        return Math.round(total * 10.0) / 10.0;
     }
 
-    // EFFECTS: Returns the total grams of sugar consumed today
+    // EFFECTS: Returns the total grams of sugar consumed today rounded to 1 decimal place
     public double getTotalSugar() {
         double total = 0.0;
         for (Food food : foodLog) {
             total += food.getSugar();
         }
-        return total;
+        return Math.round(total * 10.0) / 10.0;
     }
 
-    // EFFECTS: Returns the total grams of protein consumed today
+    // EFFECTS: Returns the total grams of protein consumed today rounded to 1 decimal place
     public double getTotalProtein() {
         double total = 0.0;
         for (Food food : foodLog) {
             total += food.getProtein();
         }
-        return total;
+        return Math.round(total * 10.0) / 10.0;
     }
 }

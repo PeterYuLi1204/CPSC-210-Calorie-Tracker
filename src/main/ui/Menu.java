@@ -117,6 +117,11 @@ public class Menu {
                     input.nextLine();
                     break;
                 case "6":
+                    printFoodsWithMostNutritionalValue(dailyLog);
+                    System.out.println("Press enter to continue:");
+                    input.nextLine();
+                    break;
+                case "7":
                     System.out.println("Going back to main menu! \n");
                     break dailyLogMenu;
                 default:
@@ -404,7 +409,8 @@ public class Menu {
         System.out.println("Enter 3 to view or edit a food in this daily log");
         System.out.println("Enter 4 to change the date of this daily log");
         System.out.println("Enter 5 to view total nutritional intake from this daily log");
-        System.out.println("Enter 6 to go back to the main menu");
+        System.out.println("Enter 6 to view foods with highest nutritional values in this daily log");
+        System.out.println("Enter 7 to go back to the main menu");
     }
 
     // EFFECTS: Prints the prompts for the food viewing and editing menu
@@ -485,5 +491,21 @@ public class Menu {
         System.out.println("Total grams of fat consumed: " + dailyLog.getTotalFat() + " g");
         System.out.println("Total grams of sugar consumed: " + dailyLog.getTotalSugar() + " g");
         System.out.println("Total grams of protein consumed: " + dailyLog.getTotalProtein() + " g \n");
+    }
+
+    // EFFECTS: Prints the foods with the highest value in each nutritional category
+    private void printFoodsWithMostNutritionalValue(DailyLog dailyLog) {
+        if (dailyLog.getFoodLog().size() > 0) {
+            System.out.println("Food with most calories:");
+            printFood(dailyLog.getFoodWithMostCalories());
+            System.out.println("Food with most fat:");
+            printFood(dailyLog.getFoodWithMostFat());
+            System.out.println("Food with most sugar:");
+            printFood(dailyLog.getFoodWithMostSugar());
+            System.out.println("Food with most protein:");
+            printFood(dailyLog.getFoodWithMostProtein());
+        } else {
+            System.out.println("There are no foods recorded yet! \n");
+        }
     }
 }

@@ -18,6 +18,8 @@ public class Food {
         this.protein = protein;
     }
 
+    // Setters
+
     // REQUIRES: name not empty
     // MODIFIES: this
     // EFFECTS: sets the name of the food to the given name
@@ -52,6 +54,8 @@ public class Food {
     public void setProtein(double protein) {
         this.protein = protein;
     }
+
+    // Getters
 
     // EFFECTS: Returns the name of the food
     public String getName() {

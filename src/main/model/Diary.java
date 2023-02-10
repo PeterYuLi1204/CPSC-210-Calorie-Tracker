@@ -16,7 +16,7 @@ public class Diary {
     // EFFECTS: Adds the given daily log to the diary then sorts the diary chronologically
     public void addDailyLog(DailyLog dailyLog) {
         dailyLogs.add(dailyLog);
-        dailyLogs.sort(DailyLog::compareDailyLogs);
+        dailyLogs.sort(DailyLog::compareDailyLogDates);
     }
 
     // MODIFIES: this
@@ -46,7 +46,8 @@ public class Diary {
         return 0;
     }
 
-    // EFFECTS: Returns the average grams of fat consumed per day or 0 if there are no daily logs
+    // EFFECTS: Returns the average grams of fat consumed per day rounded to 1 decimal place
+    //          or 0 if there are no daily logs
     public double getAverageFat() {
         if (dailyLogs.size() > 0) {
             double totalFat = 0;
@@ -55,13 +56,14 @@ public class Diary {
                 totalFat += dailyLog.getTotalFat();
             }
 
-            return totalFat / dailyLogs.size();
+            return Math.round(totalFat / dailyLogs.size() * 10.0) / 10.0;
         }
 
         return 0;
     }
 
-    // EFFECTS: Returns the average grams of sugar consumed per day or 0 if there are no daily logs
+    // EFFECTS: Returns the average grams of sugar consumed per day rounded to 1 decimal place
+    //          or 0 if there are no daily logs
     public double getAverageSugar() {
         if (dailyLogs.size() > 0) {
             double totalSugar = 0;
@@ -70,13 +72,14 @@ public class Diary {
                 totalSugar += dailyLog.getTotalSugar();
             }
 
-            return totalSugar / dailyLogs.size();
+            return Math.round(totalSugar / dailyLogs.size() * 10.0) / 10.0;
         }
 
         return 0;
     }
 
-    // EFFECTS: Returns the average grams of protein consumed per day or 0 if there are no daily logs
+    // EFFECTS: Returns the average grams of protein consumed per day rounded to 1 decimal place
+    //          or 0 if there are no daily logs
     public double getAverageProtein() {
         if (dailyLogs.size() > 0) {
             double totalProtein = 0;
@@ -85,7 +88,7 @@ public class Diary {
                 totalProtein += dailyLog.getTotalProtein();
             }
 
-            return totalProtein / dailyLogs.size();
+            return Math.round(totalProtein / dailyLogs.size() * 10.0) / 10.0;
         }
 
         return 0;
