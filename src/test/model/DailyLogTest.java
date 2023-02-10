@@ -157,8 +157,12 @@ public class DailyLogTest {
         // create initial condition
         log1.addFood(f1);
 
+        log2.addFood(f2);
+        log2.addFood(f1);
+
         // invoke behaviour to test and check output
         assertEquals(f1, log1.getFoodWithMostFat());
+        assertEquals(f1, log2.getFoodWithMostFat());
         assertEquals(f1, log3.getFoodWithMostFat());
     }
 
