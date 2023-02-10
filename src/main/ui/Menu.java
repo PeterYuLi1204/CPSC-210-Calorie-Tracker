@@ -30,6 +30,29 @@ public class Menu {
         running = false;
     }
 
+    // EFFECTS: Returns the next integer that the user inputs or -1 if the input is invalid
+    private int getIntInput() {
+        try {
+            int number = input.nextInt();
+            input.nextLine();
+
+            return number;
+        } catch (Exception e) {
+            input.nextLine();
+            return -1;
+        }
+    }
+
+    // EFFECTS: Returns the next double that the user inputs
+    private double getDoubleInput() {
+        double number = input.nextDouble();
+        input.nextLine();
+
+        return number;
+    }
+
+    // Input Handlers
+
     // Code is based on the parseInput method in the FitLifeGymKiosk program from the LongFormProblemStarters
     // EFFECTS: Prints the main menu options and waits for the user's input
     //          to continue program based on the command
@@ -51,21 +74,25 @@ public class Menu {
                     break;
                 case "4":
                     printAverageNutritionalValues();
+                    System.out.println("Press enter to continue:");
+                    input.nextLine();
                     break;
                 case "5":
                     closeProgram();
                     break;
                 default:
-                    System.out.println("Sorry, that command isn't recognized so please try again! \n");
+                    handleInvalidInput();
                     break;
             }
         }
     }
 
+    // Code is based on the parseInput method in the FitLifeGymKiosk program from the LongFormProblemStarters
     // EFFECTS: Prints the daily log viewing and editing menu options and waits for the user's input
     //          to continue program based on the command
     @SuppressWarnings("methodlength")
     private void parseDailyLogMenuInput(DailyLog dailyLog) {
+        System.out.println("Viewing daily log now! \n");
         dailyLogMenu:
         while (running) {
             printDailyLog(dailyLog);
@@ -86,20 +113,25 @@ public class Menu {
                     break;
                 case "5":
                     printDailyTotalNutritionalValues(dailyLog);
+                    System.out.println("Press enter to continue:");
+                    input.nextLine();
                     break;
                 case "6":
                     System.out.println("Going back to main menu! \n");
                     break dailyLogMenu;
                 default:
-                    System.out.println("Sorry, that command isn't recognized. Please try again!\n");
+                    handleInvalidInput();
+                    break;
             }
         }
     }
 
+    // Code is based on the parseInput method in the FitLifeGymKiosk program from the LongFormProblemStarters
     // EFFECTS: Prints the food menu options and waits for the user's input
     //          to continue program based on the command
     @SuppressWarnings("methodlength")
     private void parseFoodMenuInput(Food food) {
+        System.out.println("Viewing food item now! \n");
         foodMenu:
         while (running) {
             printFood(food);
@@ -125,9 +157,18 @@ public class Menu {
                     System.out.println("Going back to the daily log menu! \n");
                     break foodMenu;
                 default:
-                    System.out.println("Sorry, that command isn't recognized. Please try again!\n");
+                    handleInvalidInput();
+                    break;
             }
         }
+    }
+
+    // Menu Options
+
+    // EFFECTS: Prints an error statement for invalid input and waits until user presses enter to continue
+    private void handleInvalidInput() {
+        System.out.println("That's not a valid input, press enter to continue:");
+        input.nextLine();
     }
 
     // MODIFIES: this
@@ -135,118 +176,109 @@ public class Menu {
     private void handleAddNewDailyLog() {
         try {
             System.out.println("Please enter the year:");
-            int year = input.nextInt();
+            int year = getIntInput();
 
             System.out.println("Please enter the month:");
-            int month = input.nextInt();
+            int month = getIntInput();
 
             System.out.println("Please enter the day:");
-            int day = input.nextInt();
+            int day = getIntInput();
+
+            if (year < 0) {
+                throw new Exception();
+            }
 
             diary.addDailyLog(new DailyLog(year, month, day));
-            System.out.println("Successfully added! \n");
+            System.out.println("Successfully added the daily log, press enter to continue:");
             input.nextLine();
-
         } catch (Exception e) {
-            System.out.println("That's not a valid input so please try again! \n");
-            input.nextLine();
+            handleInvalidInput();
         }
     }
 
     // MODIFIES: this
     // EFFECTS: Removes a daily log from the diary with prompts and user inputs
     private void handleRemoveDailyLog() {
-        try {
-            System.out.println("Please type the number of the daily log to delete:");
-            int dailyLogToRemove = input.nextInt() - 1;
+        System.out.println("Please type the number of the daily log to delete:");
+        int dailyLogToRemove = getIntInput();
 
-            diary.removeDailyLog(dailyLogToRemove);
-            System.out.println("Successfully deleted! \n");
-            input.nextLine();
-
-        } catch (Exception e) {
-            System.out.println("That's not a valid input so please try again! \n");
-            input.nextLine();
+        if (dailyLogToRemove > diary.getDailyLogs().size() || dailyLogToRemove < 0) {
+            handleInvalidInput();
+            return;
         }
+
+        diary.removeDailyLog(dailyLogToRemove - 1);
+        System.out.println("Successfully deleted the daily log, press enter to continue:");
+        input.nextLine();
     }
 
     // EFFECTS: View a daily log and edit it with prompts and user inputs
     private void handleViewDailyLog() {
-        try {
-            int dailyLogToView;
+        System.out.println("Please type the number of the daily log to view or edit");
+        int dailyLogToView = getIntInput();
 
-            System.out.println("Please type the number of the daily log to view or edit");
-            dailyLogToView = input.nextInt() - 1;
-
-            input.nextLine();
-            parseDailyLogMenuInput(diary.getDailyLogs().get(dailyLogToView));
-
-        } catch (Exception e) {
-            System.out.println("That's not a valid input so please try again! \n");
+        if (dailyLogToView > diary.getDailyLogs().size() || dailyLogToView < 0) {
+            handleInvalidInput();
+            return;
         }
+
+        parseDailyLogMenuInput(diary.getDailyLogs().get(dailyLogToView - 1));
     }
 
-    // EFFECTS: Create and add a food to the daily log with prompts and user inputs
+    // EFFECTS: Create and add a food item to the daily log with prompts and user inputs
     private void handleAddFood(DailyLog dailyLog) {
-        try {
-            System.out.println("Please enter the name of the food:");
-            String name = input.nextLine();
+        System.out.println("Please enter the name of the food:");
+        String name = input.nextLine();
 
-            System.out.println("Please enter the calories in the food:");
-            int calories = input.nextInt();
+        System.out.println("Please enter the calories in the food:");
+        int calories = getIntInput();
 
-            System.out.println("Please enter the grams of fat in the food:");
-            double fat = input.nextDouble();
+        System.out.println("Please enter the grams of fat in the food:");
+        double fat = getDoubleInput();
 
-            System.out.println("Please enter the grams of sugar in the food:");
-            double sugar = input.nextDouble();
+        System.out.println("Please enter the grams of sugar in the food:");
+        double sugar = getDoubleInput();
 
-            System.out.println("Please enter the grams of protein in the food:");
-            double protein = input.nextDouble();
+        System.out.println("Please enter the grams of protein in the food:");
+        double protein = getDoubleInput();
 
-            if (name.isEmpty() || calories < 0 || fat < 0 || sugar < 0 || protein < 0) {
-                throw new Exception();
-            }
-
-            dailyLog.addFood(new Food(name, calories, fat, sugar, protein));
-            System.out.println("Successfully added! \n");
-            input.nextLine();
-
-        } catch (Exception e) {
-            System.out.println("That's not a valid input so please try again! \n");
-            input.nextLine();
+        if (name.isEmpty() || calories < 0 || fat < 0 || sugar < 0 || protein < 0) {
+            handleInvalidInput();
+            return;
         }
+
+        dailyLog.addFood(new Food(name, calories, fat, sugar, protein));
+        System.out.println("Successfully added the food item, press enter to continue:");
+        input.nextLine();
     }
 
     // MODIFIES: this, dailyLog
-    // EFFECTS: Remove a food to the daily log with prompts and user inputs
+    // EFFECTS: Remove a food item from the daily log with prompts and user inputs
     private void handleRemoveFood(DailyLog dailyLog) {
-        try {
-            System.out.println("Please type the number of the food to delete:");
-            int foodToRemove = input.nextInt() - 1;
+        System.out.println("Please type the number of the food to delete:");
+        int foodToRemove = getIntInput();
 
-            dailyLog.removeFood(foodToRemove);
-            System.out.println("Successfully deleted! \n");
-            input.nextLine();
-
-        } catch (Exception e) {
-            System.out.println("That's not a valid input so please try again! \n");
-            input.nextLine();
+        if (foodToRemove > dailyLog.getFoodLog().size() || foodToRemove < 0) {
+            handleInvalidInput();
+            return;
         }
+
+        dailyLog.removeFood(foodToRemove - 1);
+        System.out.println("Successfully deleted the food item, press enter to continue:");
+        input.nextLine();
     }
 
     // EFFECTS: View a food and edit it with prompts and user inputs
     private void handleViewFood(DailyLog dailyLog) {
-        try {
-            System.out.println("Please type the number of the food to view or edit");
-            int foodToView = input.nextInt() - 1;
+        System.out.println("Please type the number of the food to view or edit");
+        int foodToView = getIntInput();
 
-            input.nextLine();
-            parseFoodMenuInput(dailyLog.getFoodLog().get(foodToView));
-
-        } catch (Exception e) {
-            System.out.println("That's not a valid input so please try again! \n");
+        if (foodToView > dailyLog.getFoodLog().size() || foodToView < 0) {
+            handleInvalidInput();
+            return;
         }
+
+        parseFoodMenuInput(dailyLog.getFoodLog().get(foodToView - 1));
     }
 
     // MODIFIES: this, dailyLog
@@ -254,125 +286,104 @@ public class Menu {
     private void handleChangeDate(DailyLog dailyLog) {
         try {
             System.out.println("Please enter new the year:");
-            int year = input.nextInt();
+            int year = getIntInput();
 
             System.out.println("Please enter the new month:");
-            int month = input.nextInt();
+            int month = getIntInput();
 
             System.out.println("Please enter the new day:");
-            int day = input.nextInt();
+            int day = getIntInput();
+
+            if (year < 0) {
+                throw new Exception();
+            }
 
             dailyLog.setDate(year, month, day);
-            System.out.println("Successfully changed the date! \n");
+            System.out.println("Successfully changed the date, press enter to continue \n");
             input.nextLine();
-
         } catch (Exception e) {
-            System.out.println("That's not a valid input so please try again! \n");
-            input.nextLine();
+            handleInvalidInput();
         }
     }
 
     // MODIFIES: this, food
     // EFFECTS: Changes the name of the given food with prompts and user inputs
     private void handleEditFoodName(Food food) {
-        try {
-            System.out.println("Please enter the new name:");
-            String name = input.nextLine();
+        System.out.println("Please enter the new name:");
+        String name = input.nextLine();
 
-            if (name.isEmpty()) {
-                throw new Exception();
-            }
-
-            food.setName(name);
-            System.out.println("Successfully changed the name! \n");
-
-        } catch (Exception e) {
-            System.out.println("That's not a valid input so please try again! \n");
+        if (name.isEmpty()) {
+            handleInvalidInput();
+            return;
         }
+
+        food.setName(name);
+        System.out.println("Successfully changed the name, press enter to continue:");
+        input.nextLine();
     }
 
     // MODIFIES: this, food
     // EFFECTS: Changes the calories of the given food with prompts and user inputs
     private void handleEditFoodCalories(Food food) {
-        try {
-            System.out.println("Please enter the new calorie count:");
-            int calories = input.nextInt();
+        System.out.println("Please enter the new calorie count:");
+        int calories = getIntInput();
 
-            if (calories < 0) {
-                throw new Exception();
-            }
-
-            food.setCalories(calories);
-            System.out.println("Successfully changed the calories! \n");
-            input.nextLine();
-
-        } catch (Exception e) {
-            System.out.println("That's not a valid input so please try again! \n");
-            input.nextLine();
+        if (calories < 0) {
+            handleInvalidInput();
+            return;
         }
+
+        food.setCalories(calories);
+        System.out.println("Successfully changed the calories, press enter to continue:");
+        input.nextLine();
     }
 
     // MODIFIES: this, food
     // EFFECTS: Changes the grams of fat of the given food with prompts and user inputs
     private void handleEditFoodFat(Food food) {
-        try {
-            System.out.println("Please enter the new grams of fat:");
-            double fat = input.nextDouble();
+        System.out.println("Please enter the new grams of fat:");
+        double fat = getDoubleInput();
 
-            if (fat < 0) {
-                throw new Exception();
-            }
-
-            food.setFat(fat);
-            System.out.println("Successfully changed the grams of fat! \n");
-            input.nextLine();
-
-        } catch (Exception e) {
-            System.out.println("That's not a valid input so please try again! \n");
-            input.nextLine();
+        if (fat < 0) {
+            handleInvalidInput();
+            return;
         }
+
+        food.setFat(fat);
+        System.out.println("Successfully changed the grams of fat, press enter to continue:");
+        input.nextLine();
     }
 
     // MODIFIES: this, food
     // EFFECTS: Changes the grams of sugar of the given food with prompts and user inputs
     private void handleEditFoodSugar(Food food) {
-        try {
-            System.out.println("Please enter the new grams of sugar:");
-            double sugar = input.nextDouble();
+        System.out.println("Please enter the new grams of sugar:");
+        double sugar = getDoubleInput();
 
-            if (sugar < 0) {
-                throw new Exception();
-            }
-
-            food.setSugar(sugar);
-            System.out.println("Successfully changed the grams of sugar! \n");
-            input.nextLine();
-
-        } catch (Exception e) {
-            System.out.println("That's not a valid input so please try again! \n");
-            input.nextLine();
+        if (sugar < 0) {
+            handleInvalidInput();
+            return;
         }
+
+        food.setSugar(sugar);
+        System.out.println("Successfully changed the grams of sugar, press enter to continue:");
+        input.nextLine();
     }
 
     // MODIFIES: this, food
     // EFFECTS: Changes the grams of protein of the given food with prompts and user inputs
     private void handleEditFoodProtein(Food food) {
-        try {
-            System.out.println("Please enter the new grams of protein:");
-            double protein = input.nextDouble();
+        System.out.println("Please enter the new grams of protein:");
+        double protein = getDoubleInput();
 
-            if (protein < 0) {
-                throw new Exception();
-            }
-
-            food.setProtein(protein);
-            System.out.println("Successfully changed the grams of protein! \n");
-            input.nextLine();
-
-        } catch (Exception e) {
-            System.out.println("That's not a valid input so please try again! \n");
-            input.nextLine();
+        if (protein < 0) {
+            handleInvalidInput();
+            return;
         }
+
+        food.setProtein(protein);
+        System.out.println("Successfully changed the grams of protein, press enter to continue:");
+        input.nextLine();
     }
 
     // Print methods
@@ -414,11 +425,8 @@ public class Menu {
             System.out.println("You have no daily logs! \n");
         } else {
             int counter = 1;
-
             for (DailyLog dailyLog : diary.getDailyLogs()) {
-                System.out.println("(" + counter + ")");
-                counter++;
-
+                System.out.println("(" + counter++ + ")");
                 printDailyLogPreview(dailyLog);
             }
         }
@@ -447,11 +455,8 @@ public class Menu {
             System.out.println("No eaten foods recorded yet! \n");
         } else {
             int counter = 1;
-
             for (Food food : dailyLog.getFoodLog()) {
-                System.out.println("(" + counter + ")");
-                counter++;
-
+                System.out.println("(" + counter++ + ")");
                 printFood(food);
             }
         }
@@ -461,10 +466,9 @@ public class Menu {
     private void printFood(Food food) {
         System.out.println("Name: " + food.getName());
         System.out.println("Calories: " + food.getCalories());
-        System.out.println("Grams of fat: " + food.getFat());
-        System.out.println("Grams of sugar: " + food.getSugar());
-        System.out.println("Grams of protein: " + food.getProtein());
-        System.out.println();
+        System.out.println("Grams of fat: " + food.getFat() + " g");
+        System.out.println("Grams of sugar: " + food.getSugar() + " g");
+        System.out.println("Grams of protein: " + food.getProtein() + " g \n");
     }
 
     // EFFECTS: Prints the average nutritional values
@@ -472,8 +476,7 @@ public class Menu {
         System.out.println("Average calories per day: " + diary.getAverageCalories());
         System.out.println("Average grams of fat per day: " + diary.getAverageFat() + " g");
         System.out.println("Average grams of sugar per day: " + diary.getAverageSugar() + " g");
-        System.out.println("Average grams of protein per day: " + diary.getAverageProtein() + " g");
-        System.out.println();
+        System.out.println("Average grams of protein per day: " + diary.getAverageProtein() + " g \n");
     }
 
     // EFFECTS: Prints the total nutritional intake values
@@ -481,7 +484,6 @@ public class Menu {
         System.out.println("Total calories consumed: " + dailyLog.getTotalCalories());
         System.out.println("Total grams of fat consumed: " + dailyLog.getTotalFat() + " g");
         System.out.println("Total grams of sugar consumed: " + dailyLog.getTotalSugar() + " g");
-        System.out.println("Total grams of protein consumed: " + dailyLog.getTotalProtein() + " g");
-        System.out.println();
+        System.out.println("Total grams of protein consumed: " + dailyLog.getTotalProtein() + " g \n");
     }
 }

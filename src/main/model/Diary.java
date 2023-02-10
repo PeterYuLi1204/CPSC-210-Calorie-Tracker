@@ -61,7 +61,6 @@ public class Diary {
         return 0;
     }
 
-    // REQUIRES: At least one daily log in the diary
     // EFFECTS: Returns the average grams of sugar consumed per day or 0 if there are no daily logs
     public double getAverageSugar() {
         if (dailyLogs.size() > 0) {

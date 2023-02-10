@@ -56,13 +56,11 @@ public class DailyLog {
     //         or the food with the most calories that appears first in the record in the case of a tie
     public Food getFoodWithMostCalories() {
         Food mostCalories = null;
-
         for (Food food : foodLog) {
             if (mostCalories == null || food.getCalories() > mostCalories.getCalories()) {
                 mostCalories = food;
             }
         }
-
         return mostCalories;
     }
 
@@ -71,13 +69,11 @@ public class DailyLog {
     //         or the food with the most grams of fat that appears first in the record in the case of a tie
     public Food getFoodWithMostFat() {
         Food mostFat = null;
-
         for (Food food : foodLog) {
             if (mostFat == null || food.getFat() > mostFat.getFat()) {
                 mostFat = food;
             }
         }
-
         return mostFat;
     }
 
@@ -86,13 +82,11 @@ public class DailyLog {
     //         or the food with the most grams of sugar that appears first in the record in the case of a tie
     public Food getFoodWithMostSugar() {
         Food mostSugar = null;
-
         for (Food food : foodLog) {
             if (mostSugar == null || food.getSugar() > mostSugar.getSugar()) {
                 mostSugar = food;
             }
         }
-
         return mostSugar;
     }
 
@@ -101,57 +95,47 @@ public class DailyLog {
     //         or the food with the most grams of protein that appears first in the record in the case of a tie
     public Food getFoodWithMostProtein() {
         Food mostProtein = null;
-
         for (Food food : foodLog) {
             if (mostProtein == null || food.getProtein() > mostProtein.getProtein()) {
                 mostProtein = food;
             }
         }
-
         return mostProtein;
     }
 
     // EFFECTS: Returns the total number of calories consumed today
     public int getTotalCalories() {
         int total = 0;
-
         for (Food food : foodLog) {
             total += food.getCalories();
         }
-
         return total;
     }
 
     // EFFECTS: Returns the total grams of fat consumed today
     public double getTotalFat() {
         double total = 0.0;
-
         for (Food food : foodLog) {
             total += food.getFat();
         }
-
         return total;
     }
 
     // EFFECTS: Returns the total grams of sugar consumed today
     public double getTotalSugar() {
         double total = 0.0;
-
         for (Food food : foodLog) {
             total += food.getSugar();
         }
-
         return total;
     }
 
     // EFFECTS: Returns the total grams of protein consumed today
     public double getTotalProtein() {
         double total = 0.0;
-
         for (Food food : foodLog) {
             total += food.getProtein();
         }
-
         return total;
     }
 }
