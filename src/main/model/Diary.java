@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Diary {
 
-    private List<DailyLog> dailyLogs;
+    private final List<DailyLog> dailyLogs;
 
     // EFFECTS: Constructs a new calendar with no days in it
     public Diary() {
