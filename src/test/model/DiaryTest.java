@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+// Tests for Diary
 public class DiaryTest {
 
     private Diary diary;
@@ -13,6 +14,7 @@ public class DiaryTest {
     private DailyLog log1;
     private DailyLog log2;
 
+    // Sets up the initial values
     @BeforeEach
     public void setup() {
         diary = new Diary();
@@ -28,12 +30,14 @@ public class DiaryTest {
         log2.addFood(new Food("Thai chicken", 26, 12.2, 31.7, 8.8));
     }
 
+    // Tests the constructor and initial values
     @Test
     public void testConstructor() {
         // check initial values
         assertTrue(diary.getDailyLogs().isEmpty());
     }
 
+    // Tests adding new logs to the diary in chronological order
     @Test
     public void testAddDailyLogInChronologicalOrder() {
         // invoke behaviour to test
@@ -46,6 +50,7 @@ public class DiaryTest {
         assertEquals(log1, diary.getDailyLogs().get(1));
     }
 
+    // Tests adding new logs to the diary in non-choronological order
     @Test
     public void testAddDailyLogInWrongChronologicalOrder() {
         // invoke behaviour to test
@@ -58,6 +63,7 @@ public class DiaryTest {
         assertEquals(log1, diary.getDailyLogs().get(1));
     }
 
+    // Tests removing a daily log from the diary
     @Test
     public void testRemoveDailyLog() {
         // create initial condition
@@ -72,6 +78,7 @@ public class DiaryTest {
         assertEquals(log1, diary.getDailyLogs().get(0));
     }
 
+    // Tests removing daily logs from the diary until the diary is empty
     @Test
     public void testRemoveDailyLogUntilEmpty() {
         // create initial condition
@@ -86,6 +93,7 @@ public class DiaryTest {
         assertTrue(diary.getDailyLogs().isEmpty());
     }
 
+    // Tests getting average calories with various numbers of daily logs
     @Test
     public void testGetAverageCalories() {
         // check initial behaviour and output
@@ -102,6 +110,7 @@ public class DiaryTest {
         assertEquals(271, diary.getAverageCalories());
     }
 
+    // Tests getting average grams of fat with various numbers of daily logs
     @Test
     public void testGetAverageFat() {
         // check initial behaviour and output
@@ -118,6 +127,7 @@ public class DiaryTest {
         assertEquals(27.3, diary.getAverageFat());
     }
 
+    // Tests getting average grams of sugar with various numbers of daily logs
     @Test
     public void testGetAverageSugar() {
         // check initial behaviour and output
@@ -134,6 +144,7 @@ public class DiaryTest {
         assertEquals(47.1, diary.getAverageSugar());
     }
 
+    // Tests getting average grams of protein with various numbers of daily logs
     @Test
     public void testGetAverageProtein() {
         // check initial behaviour and output

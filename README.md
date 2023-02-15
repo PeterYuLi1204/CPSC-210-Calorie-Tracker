@@ -12,10 +12,10 @@ The **Calorie and Nutrient Tracker** will allow you to create a log of all the f
 calories, grams of protein, grams of fat, and grams of sugar it provided.
 
 With this app you'll be able to set **goals** and get **statistics** about whether you're meeting them such as:
-- Total calories consumed for a particular dailyLog
-- Average calories consumed per dailyLog
-- Total grams of sugar consumed for a particular dailyLog
-- Most consumed food
+- Total calories consumed for a particular day
+- Average grams of protein consumed per day
+- Total grams of sugar consumed for a particular day
+- Food you ate that contains the most fat
 - ***Much more***
 
 Those are just some examples with more to come!
@@ -26,8 +26,8 @@ being able to tell them if they've met goals that they set.
 ---
 ## User Stories
 
-- "As a user, I want to be able to select a dailyLog and add the foods I consumed that dailyLog"
-- "As a user, I want to be able to view all the foods I ate in a particular dailyLog"
-- "As a user, I want to be able to see the food with the most calories that I ate a particular dailyLog"
-- "As a user, I want to be able to see how many calories I consume on average" 
-- "As a user, I want to be able to see how many grams of protein I consumed on a particular dailyLog"
+- "As a user, I want to be able to select a daily log and add the foods I consumed that day"
+- "As a user, I want to be able to view all the foods I ate in a particular day"
+- "As a user, I want to be able to see the food with the most calories that I ate in a particular day"
+- "As a user, I want to be able to see how many calories I consume on average per day" 
+- "As a user, I want to be able to see how many grams of protein I consumed on a particular day"

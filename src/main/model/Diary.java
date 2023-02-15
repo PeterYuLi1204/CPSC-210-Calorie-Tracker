@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a diary for tracking calories and nutrients
 public class Diary {
 
     private final List<DailyLog> dailyLogs;
@@ -11,6 +12,8 @@ public class Diary {
     public Diary() {
         dailyLogs = new ArrayList<>();
     }
+
+    // Setters
 
     // MODIFIES: this
     // EFFECTS: Adds the given daily log to the diary then sorts the diary chronologically
@@ -24,6 +27,8 @@ public class Diary {
     public void removeDailyLog(int index) {
         dailyLogs.remove(index);
     }
+
+    // Getters
 
     // EFFECTS: Returns all daily logs in the diary
     public List<DailyLog> getDailyLogs() {

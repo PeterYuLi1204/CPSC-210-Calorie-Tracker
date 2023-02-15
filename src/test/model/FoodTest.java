@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// Tests for Food
 class FoodTest {
 
     private Food f1;
@@ -12,6 +13,7 @@ class FoodTest {
     private Food f3;
     private Food f4;
 
+    // Sets up the initial values
     @BeforeEach
     public void setup() {
         f1 = new Food("Avocado", 68, 3.1, 23.6, 1.9);
@@ -20,6 +22,7 @@ class FoodTest {
         f4 = new Food("Seaweed", 72, 3.7, 2.8, 8);
     }
 
+    // Tests the constructor and inital values
     @Test
     public void testConstructor() {
         // check initial values
@@ -49,6 +52,7 @@ class FoodTest {
         assertEquals(8, f4.getProtein());
     }
 
+    // Tests changing the name
     @Test
     public void testSetName() {
         // invoke behaviour to test
@@ -64,6 +68,7 @@ class FoodTest {
         assertEquals("Seaweed", f4.getName());
     }
 
+    // Tests changing the calories
     @Test
     public void testSetCalories() {
         // invoke behaviour to test
@@ -79,6 +84,7 @@ class FoodTest {
         assertEquals(72, f4.getCalories());
     }
 
+    // Tests changing the grams of fat
     @Test
     public void testSetFat() {
         // invoke behaviour to test
@@ -94,6 +100,7 @@ class FoodTest {
         assertEquals(3.7, f4.getFat());
     }
 
+    // Tests changing the grams of sugar
     @Test
     public void testSetSugar() {
         // invoke behaviour to test
@@ -109,6 +116,7 @@ class FoodTest {
         assertEquals(2.8, f4.getSugar());
     }
 
+    // Tests changing the grams of protein
     @Test
     public void testSetProtein() {
         // invoke behaviour to test

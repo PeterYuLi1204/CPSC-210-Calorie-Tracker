@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a daily log entry in the diary
 public class DailyLog {
 
     private final List<Food> foodLog;
@@ -30,7 +31,6 @@ public class DailyLog {
         foodLog.add(food);
     }
 
-    // TODO
     // MODIFIES: this
     // EFFECTS: Removes the food at the given position from the record of food eaten
     public void removeFood(int index) {

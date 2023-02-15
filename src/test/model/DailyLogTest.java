@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+// Tests for DailyLog
 public class DailyLogTest {
 
     private DailyLog log1;
@@ -20,6 +21,7 @@ public class DailyLogTest {
     private Food f4;
     private Food f5;
 
+    // Sets up the initial values
     @BeforeEach
     public void setup() {
         log1 = new DailyLog(2000, 2, 29);
@@ -38,6 +40,7 @@ public class DailyLogTest {
         log3.addFood(f4);
     }
 
+    // Tests the constructor and inital values
     @Test
     public void testConstructor() {
         // check initial values
@@ -50,6 +53,7 @@ public class DailyLogTest {
         assertEquals(4, log3.getFoodLog().size());
     }
 
+    // Tests adding foods to the daily log
     @Test
     public void testAddFood() {
         // invoke behaviour to test
@@ -66,6 +70,7 @@ public class DailyLogTest {
         assertEquals(f4, log1.getFoodLog().get(3));
     }
 
+    // Tests removing a single food from the daily log
     @Test
     public void testRemoveFood() {
         // invoke behaviour to test
@@ -78,6 +83,7 @@ public class DailyLogTest {
         assertEquals(f4, log3.getFoodLog().get(2));
     }
 
+    //  Tests removing all foods from the daily log
     @Test
     public void testRemoveFoodUntilEmpty() {
         // invoke behaviour to test
@@ -90,6 +96,7 @@ public class DailyLogTest {
         assertTrue(log1.getFoodLog().isEmpty());
     }
 
+    // Tests changing the date of the daily log
     @Test
     public void testSetDate() {
         // check initial value
@@ -102,6 +109,7 @@ public class DailyLogTest {
         assertEquals(log1.getDate(), log2.getDate());
     }
 
+    // Tests changing the date of the daily log to the same date
     @Test
     public void testSetDateToSameDate() {
         // check initial value
@@ -114,6 +122,7 @@ public class DailyLogTest {
         assertEquals(log2.getDate(), LocalDate.of(1900, 2, 28));
     }
 
+    // Tests comparing dates of daily logs with various differences
     @Test
     public void testCompareDailyLogDates(){
         // invoke behaviour to test and check output
@@ -128,6 +137,7 @@ public class DailyLogTest {
         assertEquals(-1, DailyLog.compareDailyLogDates(log1, new DailyLog(2000, 3, 1)));
     }
 
+    // Tests getting the food in daily log with the most calories when there is a clear choice
     @Test
     public void testGetFoodWithMostCalories() {
         // create initial condition
@@ -138,6 +148,7 @@ public class DailyLogTest {
         assertEquals(f2, log3.getFoodWithMostCalories());
     }
 
+    // Tests getting the food in the daily log with the most calories when there is a tie
     @Test
     public void testGetFoodWithMostCaloriesWithTie() {
         // create initial condition
@@ -152,6 +163,7 @@ public class DailyLogTest {
         assertEquals(f5, log2.getFoodWithMostCalories());
     }
 
+    // Tests getting the food in the daily log with the most grams of fat when there is a clear choice
     @Test
     public void testGetFoodWithMostFat() {
         // create initial condition
@@ -166,6 +178,7 @@ public class DailyLogTest {
         assertEquals(f1, log3.getFoodWithMostFat());
     }
 
+    // Tests getting the food in the daily log with the most grams of fat when there is a tie
     @Test
     public void testGetFoodWithMostFatWithTie() {
         // create initial condition
@@ -180,6 +193,7 @@ public class DailyLogTest {
         assertEquals(f5, log2.getFoodWithMostFat());
     }
 
+    // Tests getting the food in the daily log with the most grams of sugar when there is a clear choice
     @Test
     public void testGetFoodWithMostSugar() {
         // create initial condition
@@ -190,6 +204,7 @@ public class DailyLogTest {
         assertEquals(f3, log3.getFoodWithMostSugar());
     }
 
+    // Tests getting the food in the daily log with the most grams of sugar when there is a tie
     @Test
     public void testGetFoodWithMostSugarWithTie() {
         // create initial condition
@@ -204,6 +219,7 @@ public class DailyLogTest {
         assertEquals(f5, log2.getFoodWithMostSugar());
     }
 
+    // Tests getting the food in the daily log with the most protein of fat when there is a clear choice
     @Test
     public void testGetFoodWithMostProtein() {
         // create initial condition
@@ -214,6 +230,7 @@ public class DailyLogTest {
         assertEquals(f4, log3.getFoodWithMostProtein());
     }
 
+    // Tests getting the food in the daily log with the most grams of protein when there is a tie
     @Test
     public void testGetFoodWithMostProteinWithTie() {
         // create initial condition
@@ -228,6 +245,7 @@ public class DailyLogTest {
         assertEquals(f5, log2.getFoodWithMostProtein());
     }
 
+    // Tests getting total calorie count with zero foods, one food, and multiple foods
     @Test
     public void testGetTotalCalories() {
         // create initial condition
@@ -239,6 +257,7 @@ public class DailyLogTest {
         assertEquals(517, log3.getTotalCalories());
     }
 
+    // Tests getting total grams of fat with zero foods, one food, and multiple foods
     @Test
     public void testGetTotalFat() {
         // create initial condition
@@ -250,6 +269,7 @@ public class DailyLogTest {
         assertEquals(42.4, log3.getTotalFat());
     }
 
+    // Tests getting total grams of sugar with zero foods, one food, and multiple foods
     @Test
     public void testGetTotalSugar() {
         // create initial condition
@@ -261,6 +281,7 @@ public class DailyLogTest {
         assertEquals(62.4, log3.getTotalSugar());
     }
 
+    // Tests getting total grams of protein with zero foods, one food, and multiple foods
     @Test
     public void testGetTotalProtein() {
         // create initial condition

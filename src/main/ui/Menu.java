@@ -6,6 +6,7 @@ import model.Food;
 
 import java.util.Scanner;
 
+// User interactive menu for the program
 public class Menu {
 
     private boolean running;
@@ -18,17 +19,19 @@ public class Menu {
         running = true;
     }
 
-    // EFFECTS: Starts the program
+    // EFFECTS: Starts the program at the main menu
     public void startProgram() {
         parseMainMenuInput();
     }
 
-    // EFFECTS: Closes the program
+    // EFFECTS: Stops taking user input and closes the program
     private void closeProgram() {
         input.close();
         System.out.println("Quitting Program");
         running = false;
     }
+
+    // Input Getters
 
     // EFFECTS: Returns the next integer that the user inputs or -1 if the input is invalid
     private int getIntInput() {
@@ -81,7 +84,7 @@ public class Menu {
                     closeProgram();
                     break;
                 default:
-                    handleInvalidInput();
+                    handleInvalidInput("command");
                     break;
             }
         }
@@ -125,7 +128,7 @@ public class Menu {
                     System.out.println("Going back to main menu! \n");
                     break dailyLogMenu;
                 default:
-                    handleInvalidInput();
+                    handleInvalidInput("command");
                     break;
             }
         }
@@ -162,7 +165,7 @@ public class Menu {
                     System.out.println("Going back to the daily log menu! \n");
                     break foodMenu;
                 default:
-                    handleInvalidInput();
+                    handleInvalidInput("command");
                     break;
             }
         }
@@ -171,8 +174,8 @@ public class Menu {
     // Menu Options
 
     // EFFECTS: Prints an error statement for invalid input and waits until user presses enter to continue
-    private void handleInvalidInput() {
-        System.out.println("That's not a valid input, press enter to continue:");
+    private void handleInvalidInput(String error) {
+        System.out.println("That's not a valid " + error + ", press enter to continue:");
         input.nextLine();
     }
 
@@ -197,7 +200,7 @@ public class Menu {
             System.out.println("Successfully added the daily log, press enter to continue:");
             input.nextLine();
         } catch (Exception e) {
-            handleInvalidInput();
+            handleInvalidInput("date");
         }
     }
 
@@ -208,7 +211,7 @@ public class Menu {
         int dailyLogToRemove = getIntInput();
 
         if (dailyLogToRemove > diary.getDailyLogs().size() || dailyLogToRemove < 0) {
-            handleInvalidInput();
+            handleInvalidInput("number for a daily log");
             return;
         }
 
@@ -223,7 +226,7 @@ public class Menu {
         int dailyLogToView = getIntInput();
 
         if (dailyLogToView > diary.getDailyLogs().size() || dailyLogToView < 0) {
-            handleInvalidInput();
+            handleInvalidInput("number for a daily log");
             return;
         }
 
@@ -248,7 +251,7 @@ public class Menu {
         double protein = getDoubleInput();
 
         if (name.isEmpty() || calories < 0 || fat < 0 || sugar < 0 || protein < 0) {
-            handleInvalidInput();
+            handleInvalidInput("food");
             return;
         }
 
@@ -264,7 +267,7 @@ public class Menu {
         int foodToRemove = getIntInput();
 
         if (foodToRemove > dailyLog.getFoodLog().size() || foodToRemove < 0) {
-            handleInvalidInput();
+            handleInvalidInput("number for a food");
             return;
         }
 
@@ -279,7 +282,7 @@ public class Menu {
         int foodToView = getIntInput();
 
         if (foodToView > dailyLog.getFoodLog().size() || foodToView < 0) {
-            handleInvalidInput();
+            handleInvalidInput("number for a food");
             return;
         }
 
@@ -307,7 +310,7 @@ public class Menu {
             System.out.println("Successfully changed the date, press enter to continue \n");
             input.nextLine();
         } catch (Exception e) {
-            handleInvalidInput();
+            handleInvalidInput("date");
         }
     }
 
@@ -318,7 +321,7 @@ public class Menu {
         String name = input.nextLine();
 
         if (name.isEmpty()) {
-            handleInvalidInput();
+            handleInvalidInput("name");
             return;
         }
 
@@ -334,7 +337,7 @@ public class Menu {
         int calories = getIntInput();
 
         if (calories < 0) {
-            handleInvalidInput();
+            handleInvalidInput("calorie count");
             return;
         }
 
@@ -350,7 +353,7 @@ public class Menu {
         double fat = getDoubleInput();
 
         if (fat < 0) {
-            handleInvalidInput();
+            handleInvalidInput("amount of fat");
             return;
         }
 
@@ -366,7 +369,7 @@ public class Menu {
         double sugar = getDoubleInput();
 
         if (sugar < 0) {
-            handleInvalidInput();
+            handleInvalidInput("amount of sugar");
             return;
         }
 
@@ -382,7 +385,7 @@ public class Menu {
         double protein = getDoubleInput();
 
         if (protein < 0) {
-            handleInvalidInput();
+            handleInvalidInput("amount of protein");
             return;
         }
 
