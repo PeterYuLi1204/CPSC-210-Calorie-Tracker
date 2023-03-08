@@ -1,0 +1,16 @@
+{"daily logs": [
+   {
+      "date": "0001-01-01",
+      "foods": [{
+         "protein": 4,
+         "name": "apple",
+         "fat": 2,
+         "calories": 1,
+         "sugar": 3
+      }]
+   },
+   {
+      "date": "0002-02-02",
+      "foods": []
+   }
+]}

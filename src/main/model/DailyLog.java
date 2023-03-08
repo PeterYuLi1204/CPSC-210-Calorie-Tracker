@@ -7,13 +7,13 @@ import java.util.List;
 // Represents a daily log entry in the diary
 public class DailyLog {
 
-    private final List<Food> foodLog;
+    private final List<Food> foods;
     private LocalDate date;
 
     // REQUIRES: year, month, and day must be a valid date
     // EFFECTS: Constructs a new day with an empty record of foods eaten
     public DailyLog(int year, int month, int day) {
-        foodLog = new ArrayList<>();
+        foods = new ArrayList<>();
         date = LocalDate.of(year, month, day);
     }
 
@@ -28,13 +28,13 @@ public class DailyLog {
     // MODIFIES: this
     // EFFECTS: Adds the given food to the record of foods eaten
     public void addFood(Food food) {
-        foodLog.add(food);
+        foods.add(food);
     }
 
     // MODIFIES: this
     // EFFECTS: Removes the food at the given position from the record of food eaten
     public void removeFood(int index) {
-        foodLog.remove(index);
+        foods.remove(index);
     }
 
     // REQUIRES: year, month, and day must be a valid date
@@ -47,8 +47,8 @@ public class DailyLog {
     // Getters
 
     // EFFECTS: Returns the record of foods eaten
-    public List<Food> getFoodLog() {
-        return foodLog;
+    public List<Food> getFoods() {
+        return foods;
     }
 
     // EFFECTS: Returns the date of the daily log
@@ -61,7 +61,7 @@ public class DailyLog {
     //         or the food with the most calories that appears first in the record in the case of a tie
     public Food getFoodWithMostCalories() {
         Food mostCalories = null;
-        for (Food food : foodLog) {
+        for (Food food : foods) {
             if (mostCalories == null || food.getCalories() > mostCalories.getCalories()) {
                 mostCalories = food;
             }
@@ -74,7 +74,7 @@ public class DailyLog {
     //         or the food with the most grams of fat that appears first in the record in the case of a tie
     public Food getFoodWithMostFat() {
         Food mostFat = null;
-        for (Food food : foodLog) {
+        for (Food food : foods) {
             if (mostFat == null || food.getFat() > mostFat.getFat()) {
                 mostFat = food;
             }
@@ -87,7 +87,7 @@ public class DailyLog {
     //         or the food with the most grams of sugar that appears first in the record in the case of a tie
     public Food getFoodWithMostSugar() {
         Food mostSugar = null;
-        for (Food food : foodLog) {
+        for (Food food : foods) {
             if (mostSugar == null || food.getSugar() > mostSugar.getSugar()) {
                 mostSugar = food;
             }
@@ -100,7 +100,7 @@ public class DailyLog {
     //         or the food with the most grams of protein that appears first in the record in the case of a tie
     public Food getFoodWithMostProtein() {
         Food mostProtein = null;
-        for (Food food : foodLog) {
+        for (Food food : foods) {
             if (mostProtein == null || food.getProtein() > mostProtein.getProtein()) {
                 mostProtein = food;
             }
@@ -111,7 +111,7 @@ public class DailyLog {
     // EFFECTS: Returns the total number of calories consumed today
     public int getTotalCalories() {
         int total = 0;
-        for (Food food : foodLog) {
+        for (Food food : foods) {
             total += food.getCalories();
         }
         return total;
@@ -120,7 +120,7 @@ public class DailyLog {
     // EFFECTS: Returns the total grams of fat consumed today rounded to 1 decimal place
     public double getTotalFat() {
         double total = 0.0;
-        for (Food food : foodLog) {
+        for (Food food : foods) {
             total += food.getFat();
         }
         return Math.round(total * 10.0) / 10.0;
@@ -129,7 +129,7 @@ public class DailyLog {
     // EFFECTS: Returns the total grams of sugar consumed today rounded to 1 decimal place
     public double getTotalSugar() {
         double total = 0.0;
-        for (Food food : foodLog) {
+        for (Food food : foods) {
             total += food.getSugar();
         }
         return Math.round(total * 10.0) / 10.0;
@@ -138,7 +138,7 @@ public class DailyLog {
     // EFFECTS: Returns the total grams of protein consumed today rounded to 1 decimal place
     public double getTotalProtein() {
         double total = 0.0;
-        for (Food food : foodLog) {
+        for (Food food : foods) {
             total += food.getProtein();
         }
         return Math.round(total * 10.0) / 10.0;

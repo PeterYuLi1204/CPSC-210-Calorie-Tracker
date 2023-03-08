@@ -3,15 +3,22 @@ package ui;
 import model.DailyLog;
 import model.Diary;
 import model.Food;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // User interactive menu for the program
 public class Menu {
 
+    private static final String LOCATION = "./data/diary.json";
     private boolean running;
     private final Scanner input;
-    private final Diary diary;
+    private Diary diary;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     public Menu() {
         diary = new Diary();
@@ -21,6 +28,8 @@ public class Menu {
 
     // EFFECTS: Starts the program at the main menu
     public void startProgram() {
+        jsonWriter = new JsonWriter(LOCATION);
+        jsonReader = new JsonReader(LOCATION);
         parseMainMenuInput();
     }
 
@@ -81,6 +90,12 @@ public class Menu {
                     input.nextLine();
                     break;
                 case "5":
+                    saveDiary();
+                    break;
+                case "6":
+                    loadDiary();
+                    break;
+                case "7":
                     closeProgram();
                     break;
                 default:
@@ -266,7 +281,7 @@ public class Menu {
         System.out.println("Please type the number of the food to delete:");
         int foodToRemove = getIntInput();
 
-        if (foodToRemove > dailyLog.getFoodLog().size() || foodToRemove < 0) {
+        if (foodToRemove > dailyLog.getFoods().size() || foodToRemove < 0) {
             handleInvalidInput("number for a food");
             return;
         }
@@ -281,12 +296,12 @@ public class Menu {
         System.out.println("Please type the number of the food to view or edit");
         int foodToView = getIntInput();
 
-        if (foodToView > dailyLog.getFoodLog().size() || foodToView < 0) {
+        if (foodToView > dailyLog.getFoods().size() || foodToView < 0) {
             handleInvalidInput("number for a food");
             return;
         }
 
-        parseFoodMenuInput(dailyLog.getFoodLog().get(foodToView - 1));
+        parseFoodMenuInput(dailyLog.getFoods().get(foodToView - 1));
     }
 
     // MODIFIES: this, dailyLog
@@ -402,7 +417,9 @@ public class Menu {
         System.out.println("Enter 2 to remove an entry from your diary");
         System.out.println("Enter 3 to view or edit an entry in your diary");
         System.out.println("Enter 4 to view average nutritional intake");
-        System.out.println("Enter 5 to quit the program");
+        System.out.println("Enter 5 to save the diary");
+        System.out.println("Enter 6 to load the diary");
+        System.out.println("Enter 7 to quit the program");
     }
 
     // EFFECTS: Prints the prompts for the daily log viewing and editing menu
@@ -445,10 +462,10 @@ public class Menu {
     private void printDailyLogPreview(DailyLog dailyLog) {
         System.out.println("Daily log of " + dailyLog.getDate());
 
-        if (dailyLog.getFoodLog().size() == 0) {
+        if (dailyLog.getFoods().size() == 0) {
             System.out.println("No eaten foods recorded yet! \n");
         } else {
-            for (Food food : dailyLog.getFoodLog()) {
+            for (Food food : dailyLog.getFoods()) {
                 System.out.println(" - " + food.getName());
             }
             System.out.println();
@@ -460,11 +477,11 @@ public class Menu {
     private void printDailyLog(DailyLog dailyLog) {
         System.out.println("Daily log of " + dailyLog.getDate() + ":");
 
-        if (dailyLog.getFoodLog().size() == 0) {
+        if (dailyLog.getFoods().size() == 0) {
             System.out.println("No eaten foods recorded yet! \n");
         } else {
             int counter = 1;
-            for (Food food : dailyLog.getFoodLog()) {
+            for (Food food : dailyLog.getFoods()) {
                 System.out.println("(" + counter++ + ")");
                 printFood(food);
             }
@@ -498,7 +515,7 @@ public class Menu {
 
     // EFFECTS: Prints the foods with the highest value in each nutritional category
     private void printFoodsWithMostNutritionalValue(DailyLog dailyLog) {
-        if (dailyLog.getFoodLog().size() > 0) {
+        if (dailyLog.getFoods().size() > 0) {
             System.out.println("Food with most calories:");
             printFood(dailyLog.getFoodWithMostCalories());
             System.out.println("Food with most fat:");
@@ -509,6 +526,33 @@ public class Menu {
             printFood(dailyLog.getFoodWithMostProtein());
         } else {
             System.out.println("There are no foods recorded yet! \n");
+        }
+    }
+
+    // Code is based on the WorkRoomApp class in the JsonSerializationDemo program from the Phase 2
+    // EFFECTS: Saves the diary to file
+    public void saveDiary() {
+        try {
+            jsonWriter.save(diary);
+            System.out.println("Successfully saved the diary, press enter to continue:");
+            input.nextLine();
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file, press enter to continue:");
+            input.nextLine();
+        }
+    }
+
+    // Code is based on the WorkRoomApp class in the JsonSerializationDemo program from the Phase 2
+    // MODIFIES: this
+    // EFFECTS: Loads the diary from file
+    public void loadDiary() {
+        try {
+            diary = jsonReader.load();
+            System.out.println("Successfully loaded the diary, press enter to continue:");
+            input.nextLine();
+        } catch (IOException e) {
+            System.out.println("Unable to read from file, press enter to continue:");
+            input.nextLine();
         }
     }
 }

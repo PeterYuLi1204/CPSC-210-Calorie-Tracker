@@ -48,9 +48,9 @@ public class DailyLogTest {
         assertEquals(LocalDate.of(1900, 2, 28), log2.getDate());
         assertEquals(LocalDate.of(2023, 2, 10), log3.getDate());
 
-        assertTrue(log1.getFoodLog().isEmpty());
-        assertTrue(log2.getFoodLog().isEmpty());
-        assertEquals(4, log3.getFoodLog().size());
+        assertTrue(log1.getFoods().isEmpty());
+        assertTrue(log2.getFoods().isEmpty());
+        assertEquals(4, log3.getFoods().size());
     }
 
     // Tests adding foods to the daily log
@@ -63,11 +63,11 @@ public class DailyLogTest {
         log1.addFood(f4);
 
         // check output
-        assertEquals(4, log1.getFoodLog().size());
-        assertEquals(f1, log1.getFoodLog().get(0));
-        assertEquals(f2, log1.getFoodLog().get(1));
-        assertEquals(f3, log1.getFoodLog().get(2));
-        assertEquals(f4, log1.getFoodLog().get(3));
+        assertEquals(4, log1.getFoods().size());
+        assertEquals(f1, log1.getFoods().get(0));
+        assertEquals(f2, log1.getFoods().get(1));
+        assertEquals(f3, log1.getFoods().get(2));
+        assertEquals(f4, log1.getFoods().get(3));
     }
 
     // Tests removing a single food from the daily log
@@ -77,10 +77,10 @@ public class DailyLogTest {
         log3.removeFood(1);
 
         // check output
-        assertEquals(3, log3.getFoodLog().size());
-        assertEquals(f1, log3.getFoodLog().get(0));
-        assertEquals(f3, log3.getFoodLog().get(1));
-        assertEquals(f4, log3.getFoodLog().get(2));
+        assertEquals(3, log3.getFoods().size());
+        assertEquals(f1, log3.getFoods().get(0));
+        assertEquals(f3, log3.getFoods().get(1));
+        assertEquals(f4, log3.getFoods().get(2));
     }
 
     //  Tests removing all foods from the daily log
@@ -93,7 +93,7 @@ public class DailyLogTest {
         log3.removeFood(0);
 
         // check output
-        assertTrue(log1.getFoodLog().isEmpty());
+        assertTrue(log1.getFoods().isEmpty());
     }
 
     // Tests changing the date of the daily log
