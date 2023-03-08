@@ -31,3 +31,5 @@ being able to tell them if they've met goals that they set.
 - "As a user, I want to be able to see the food with the most calories that I ate in a particular day"
 - "As a user, I want to be able to see how many calories I consume on average per day" 
 - "As a user, I want to be able to see how many grams of protein I consumed on a particular day"
+- "As a user, I want to be able to save my diary to file (if I so choose)"
+- "As a user, I want to be able to be able to load my diary from file (if I so choose)"
