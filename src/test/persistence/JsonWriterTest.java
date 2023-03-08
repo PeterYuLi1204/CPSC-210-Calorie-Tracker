@@ -13,6 +13,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonWriterTest extends JsonTest {
+    // Code is based on the JsonWriterTest class in the JsonSerializationDemo program from the Phase 2
+    // Tests writing to an invalid location
     @Test
     public void testWriteInvalidFile() {
         JsonWriter jsonWriter = new JsonWriter("./data/\0.json");
@@ -24,6 +26,8 @@ public class JsonWriterTest extends JsonTest {
         }
     }
 
+    // Code is based on the JsonWriterTest class in the JsonSerializationDemo program from the Phase 2
+    // Tests writing an empty diary to file
     @Test
     public void testWriteEmptyDiary() {
         JsonWriter jsonWriter = new JsonWriter("./data/testWriteEmptyDiary");
@@ -40,6 +44,8 @@ public class JsonWriterTest extends JsonTest {
         }
     }
 
+    // Code is based on the JsonWriterTest class in the JsonSerializationDemo program from the Phase 2
+    // Tests writing a general diary to file
     @Test
     public void testWriteGeneralDiary() {
         JsonWriter jsonWriter = new JsonWriter("./data/testWriteEmptyDiary");

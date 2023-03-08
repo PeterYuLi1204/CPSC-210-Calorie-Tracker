@@ -12,6 +12,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonReaderTest extends JsonTest {
+    // Code is based on the JsonReaderTest class in the JsonSerializationDemo program from the Phase 2
+    // Tests reading a file that does not exist
     @Test
     public void testReadNonExistantFile() {
         JsonReader jsonReader = new JsonReader("./data/nullFile.json");
@@ -23,6 +25,8 @@ public class JsonReaderTest extends JsonTest {
         }
     }
 
+    // Code is based on the JsonReaderTest class in the JsonSerializationDemo program from the Phase 2
+    // Tests reading an empty diary from file
     @Test
     public void testReadEmptyDiary() {
         JsonReader jsonReader = new JsonReader("./data/testReadEmptyDiary.json");
@@ -34,6 +38,8 @@ public class JsonReaderTest extends JsonTest {
         }
     }
 
+    // Code is based on the JsonReaderTest class in the JsonSerializationDemo program from the Phase 2
+    // Tests reading a general diary from file
     @Test
     public void testReadGeneralDiary() {
         JsonReader jsonReader = new JsonReader("./data/testReadGeneralDiary.json");
