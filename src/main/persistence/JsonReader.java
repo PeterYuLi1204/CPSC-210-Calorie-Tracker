@@ -73,9 +73,9 @@ public class JsonReader {
     private void parseFood(DailyLog dailyLog, JSONObject nextFood) {
         String name = nextFood.getString("name");
         int calories = nextFood.getInt("calories");
-        double fat = nextFood.getInt("fat");
-        double sugar = nextFood.getInt("sugar");
-        double protein = nextFood.getInt("protein");
+        double fat = nextFood.getDouble("fat");
+        double sugar = nextFood.getDouble("sugar");
+        double protein = nextFood.getDouble("protein");
 
         dailyLog.addFood(new Food(name, calories, fat, sugar, protein));
     }

@@ -4,7 +4,6 @@ import model.Diary;
 import model.DailyLog;
 import model.Food;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 

@@ -1,0 +1,47 @@
+{"daily logs": [
+   {
+      "date": "0001-01-01",
+      "foods": [
+         {
+            "protein": 2.1,
+            "name": "Apple",
+            "fat": 27.2,
+            "calories": 150,
+            "sugar": 16.9
+         },
+         {
+            "protein": 1.2,
+            "name": "Banana",
+            "fat": 0,
+            "calories": 280,
+            "sugar": 17.8
+         }
+      ]
+   },
+   {
+      "date": "2023-03-08",
+      "foods": [
+         {
+            "protein": 57.9,
+            "name": "Steak",
+            "fat": 32.4,
+            "calories": 562,
+            "sugar": 9.8
+         },
+         {
+            "protein": 22.1,
+            "name": "Pasta",
+            "fat": 14.5,
+            "calories": 989,
+            "sugar": 67.1
+         },
+         {
+            "protein": 1,
+            "name": "Strawberry Smoothie",
+            "fat": 4,
+            "calories": 127,
+            "sugar": 12.7
+         }
+      ]
+   }
+]}

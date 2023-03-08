@@ -1,0 +1,47 @@
+{"daily logs": [
+   {
+      "date": "0002-02-02",
+      "foods": [
+         {
+            "protein": 0,
+            "name": "Candy",
+            "fat": 2.1,
+            "calories": 200,
+            "sugar": 21.7
+         },
+         {
+            "protein": 17.2,
+            "name": "Yogurt",
+            "fat": 65.2,
+            "calories": 652,
+            "sugar": 12.1
+         },
+         {
+            "protein": 6.7,
+            "name": "Milk",
+            "fat": 16.2,
+            "calories": 75,
+            "sugar": 5.4
+         }
+      ]
+   },
+   {
+      "date": "2023-03-07",
+      "foods": [
+         {
+            "protein": 0,
+            "name": "Water",
+            "fat": 0,
+            "calories": 0,
+            "sugar": 0
+         },
+         {
+            "protein": 29.9,
+            "name": "Dumplings",
+            "fat": 16.2,
+            "calories": 417,
+            "sugar": 1.5
+         }
+      ]
+   }
+]}
