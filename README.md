@@ -33,3 +33,12 @@ being able to tell them if they've met goals that they set.
 - "As a user, I want to be able to see how many grams of protein I consumed on a particular day"
 - "As a user, I want to be able to save my diary to file (if I so choose)"
 - "As a user, I want to be able to be able to load my diary from file (if I so choose)"
+
+---
+## Instructions for Grader
+
+- You can generate the first required action related to adding Xs to a Y by pressing the "Add Food" button in the daily log submenu and providing valid values to add a "Food" (X) to the "Daily Log" (Y)
+- You can generate the second required action related to adding Xs to a Y by pressing the "Total Nutritional Intake" button in the daily log submenu which provided the total values for all "Foods" (X's) in the "Daily Log" (Y)
+- You can locate my visual component by clicking the "Average Nutritional Intake" button and noting the apple icon in the popup
+- You can save the state of my application by pressing the "Save" button on the main menu
+- You can reload the state of my application by pressing the "Load" button on the main menu

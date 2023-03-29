@@ -131,7 +131,6 @@ public class GraphicalMenu extends JFrame implements ActionListener {
 
     // Button Functionality
 
-    // MODIFIES: this
     // EFFECTS: Responds and continues the program when user presses a button
     @SuppressWarnings("methodlength")
     @Override
