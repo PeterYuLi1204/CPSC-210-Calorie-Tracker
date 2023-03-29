@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 // User interactive menu for the program
-public class Menu {
+public class ConsoleMenu {
 
     private static final String LOCATION = "./data/diary.json";
     private boolean running;
@@ -20,16 +20,16 @@ public class Menu {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    public Menu() {
+    public ConsoleMenu() {
         diary = new Diary();
         input = new Scanner(System.in);
         running = true;
+        jsonWriter = new JsonWriter(LOCATION);
+        jsonReader = new JsonReader(LOCATION);
     }
 
     // EFFECTS: Starts the program at the main menu
     public void startProgram() {
-        jsonWriter = new JsonWriter(LOCATION);
-        jsonReader = new JsonReader(LOCATION);
         parseMainMenuInput();
     }
 
