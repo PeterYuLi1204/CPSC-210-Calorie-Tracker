@@ -1,22 +1,31 @@
 {"daily logs": [
-  {
-    "date": "2000-11-02",
-    "foods": [{
-      "protein": 4,
-      "name": "apple",
-      "fat": 2,
-      "calories": 1,
-      "sugar": 3
-    }]
-  },
-  {
-    "date": "2004-12-22",
-    "foods": [{
-      "protein": 2,
-      "name": "Steak",
-      "fat": 2.5,
-      "calories": 100,
-      "sugar": 2
-    }]
-  }
+   {
+      "date": "2000-11-02",
+      "foods": [
+         {
+            "protein": 2.1,
+            "name": "Apple",
+            "fat": 27.2,
+            "calories": 150,
+            "sugar": 16.9
+         },
+         {
+            "protein": 1.2,
+            "name": "Banana",
+            "fat": 0,
+            "calories": 280,
+            "sugar": 17.8
+         }
+      ]
+   },
+   {
+      "date": "2004-12-22",
+      "foods": [{
+         "protein": 2,
+         "name": "Steak",
+         "fat": 2.5,
+         "calories": 100,
+         "sugar": 2
+      }]
+   }
 ]}
