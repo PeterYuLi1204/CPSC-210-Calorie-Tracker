@@ -196,7 +196,7 @@ public class GraphicalMenu extends JFrame implements ActionListener {
             deleteButton.addActionListener(E -> {
                 diary.getDailyLogs().remove(dailyLog);
                 dailyLogListPanel.remove(dailyLogCard);
-                validate();
+                refreshGraphics();
                 displaySuccessGraphic("Successfully deleted the daily log!");
             });
 
@@ -204,7 +204,7 @@ public class GraphicalMenu extends JFrame implements ActionListener {
             dailyLogCard.add(deleteButton, BorderLayout.EAST);
             dailyLogListPanel.add(dailyLogCard);
         }
-        validate();
+        refreshGraphics();
     }
 
     // MODIFIES: this
@@ -223,7 +223,7 @@ public class GraphicalMenu extends JFrame implements ActionListener {
             deleteButton.addActionListener(E -> {
                 dailyLog.getFoods().remove(food);
                 foodListPanel.remove(foodCard);
-                validate();
+                refreshGraphics();
                 displaySuccessGraphic("Successfully deleted the food!");
             });
 
@@ -231,7 +231,7 @@ public class GraphicalMenu extends JFrame implements ActionListener {
             foodCard.add(deleteButton, BorderLayout.EAST);
             foodListPanel.add(foodCard);
         }
-        validate();
+        refreshGraphics();
     }
 
     // MODIFIES: this
@@ -379,5 +379,11 @@ public class GraphicalMenu extends JFrame implements ActionListener {
     private void displayErrorMessage(String errorMessage) {
         JOptionPane.showMessageDialog(this, errorMessage, "Error", JOptionPane.WARNING_MESSAGE,
                 new ImageIcon("image/Error.png"));
+    }
+
+    // EFFECTS: Refreshes what is being displayed
+    private void refreshGraphics() {
+        validate();
+        repaint();
     }
 }
