@@ -257,7 +257,7 @@ public class GraphicalMenu extends JFrame implements ActionListener {
                 + "\nAverage grams of sugar per day: " + diary.getAverageSugar() + " g"
                 + "\nAverage grams of protein per day: " + diary.getAverageProtein() + " g";
         JOptionPane.showMessageDialog(null, nutritionInformation,"Average Nutritional Intake",
-                JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Image/Apple.png"));
+                JOptionPane.INFORMATION_MESSAGE, new ImageIcon("image/Apple.png"));
     }
 
     // Code is based on the WorkRoomApp class in the JsonSerializationDemo program from the Phase 2
@@ -313,7 +313,7 @@ public class GraphicalMenu extends JFrame implements ActionListener {
                 + "\nAverage grams of sugar consumed: " + currentDailyLog.getTotalSugar() + " g"
                 + "\nAverage grams of protein consumed: " + currentDailyLog.getTotalProtein() + " g";
         JOptionPane.showMessageDialog(null, nutritionInformation,"Average Nutritional Intake",
-                JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Image/Pear.png"));
+                JOptionPane.INFORMATION_MESSAGE, new ImageIcon("image/Pear.png"));
     }
 
     // MODIFIES: this
@@ -369,15 +369,15 @@ public class GraphicalMenu extends JFrame implements ActionListener {
 
     // Pop-up Messages
 
-    // EFFECTS: Displays the given confimation message as a pop-up window with an icon
+    // EFFECTS: Displays the given confirmation message as a pop-up window with an icon
     private void displaySuccessGraphic(String successfulOperation) {
         JOptionPane.showMessageDialog(null, successfulOperation, "Confirmation",
-                JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Image/Confirmation.png"));
+                JOptionPane.INFORMATION_MESSAGE, new ImageIcon("image/Confirmation.png"));
     }
 
     // EFFECTS: Displays the given warning message as a pop-up window with an icon
     private void displayErrorMessage(String errorMessage) {
         JOptionPane.showMessageDialog(this, errorMessage, "Error", JOptionPane.WARNING_MESSAGE,
-                new ImageIcon("Image/Error.png"));
+                new ImageIcon("image/Error.png"));
     }
 }
