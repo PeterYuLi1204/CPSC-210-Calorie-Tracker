@@ -2,6 +2,8 @@ package ui;
 
 import model.DailyLog;
 import model.Diary;
+import model.Event;
+import model.EventLog;
 import model.Food;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -10,9 +12,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+// Graphical menu for calorie tracker application
 public class GraphicalMenu extends JFrame implements ActionListener {
 
     public static final int WIDTH = 600;
@@ -55,7 +60,8 @@ public class GraphicalMenu extends JFrame implements ActionListener {
     private void initializeGraphics() {
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setPrintEventLogOnClose();
         initializeDailyLogListPanel();
         initializeMainMenuInputs();
         initializeFoodListPanel();
@@ -221,7 +227,7 @@ public class GraphicalMenu extends JFrame implements ActionListener {
             foodButton.addActionListener(E -> handleEditFood(food));
 
             deleteButton.addActionListener(E -> {
-                dailyLog.getFoods().remove(food);
+                dailyLog.removeFood(food);
                 foodListPanel.remove(foodCard);
                 refreshGraphics();
                 displaySuccessGraphic("Successfully deleted the food!");
@@ -385,5 +391,17 @@ public class GraphicalMenu extends JFrame implements ActionListener {
     private void refreshGraphics() {
         validate();
         repaint();
+    }
+
+    private void setPrintEventLogOnClose() {
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (Event event : EventLog.getInstance()) {
+                    System.out.println(event.toString());
+                }
+                System.exit(0);
+            }
+        });
     }
 }

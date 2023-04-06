@@ -26,15 +26,24 @@ public class DailyLog {
     // Setters
 
     // MODIFIES: this
-    // EFFECTS: Adds the given food to the record of foods eaten
+    // EFFECTS: Adds the given food to the record of foods eaten and then logs the event
     public void addFood(Food food) {
         foods.add(food);
+        EventLog.getInstance().logEvent(new Event("Added a food to a daily log"));
     }
 
     // MODIFIES: this
-    // EFFECTS: Removes the food at the given position from the record of food eaten
+    // EFFECTS: Removes the food at the given position from the record of food eaten and then logs the event
     public void removeFood(int index) {
         foods.remove(index);
+        EventLog.getInstance().logEvent(new Event("Removed a food from a daily log"));
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Removes the given food from the record of food eaten and then logs the event
+    public void removeFood(Food food) {
+        foods.remove(food);
+        EventLog.getInstance().logEvent(new Event("Removed a food from a daily log"));
     }
 
     // REQUIRES: year, month, and day must be a valid date

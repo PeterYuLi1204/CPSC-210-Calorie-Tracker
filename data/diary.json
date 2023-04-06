@@ -4,25 +4,6 @@
       "foods": []
    },
    {
-      "date": "2004-12-22",
-      "foods": [
-         {
-            "protein": 16,
-            "name": "Steak",
-            "fat": 14,
-            "calories": 100,
-            "sugar": 15
-         },
-         {
-            "protein": 0,
-            "name": "Pear",
-            "fat": 12,
-            "calories": 10,
-            "sugar": 14
-         }
-      ]
-   },
-   {
       "date": "2023-03-29",
       "foods": [{
          "protein": 1.2,

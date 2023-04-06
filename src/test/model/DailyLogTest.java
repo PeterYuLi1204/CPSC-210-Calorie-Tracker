@@ -96,6 +96,32 @@ public class DailyLogTest {
         assertTrue(log1.getFoods().isEmpty());
     }
 
+    // Tests removing a single food from the daily log by passing in the food object
+    @Test
+    public void testRemoveFoodObject() {
+        // invoke behaviour to test
+        log3.removeFood(f2);
+
+        // check output
+        assertEquals(3, log3.getFoods().size());
+        assertEquals(f1, log3.getFoods().get(0));
+        assertEquals(f3, log3.getFoods().get(1));
+        assertEquals(f4, log3.getFoods().get(2));
+    }
+
+    //  Tests removing all foods from the daily log by passing in the food objects
+    @Test
+    public void testRemoveFoodObjectsUntilEmpty() {
+        // invoke behaviour to test
+        log3.removeFood(f1);
+        log3.removeFood(f2);
+        log3.removeFood(f3);
+        log3.removeFood(f4);
+
+        // check output
+        assertTrue(log1.getFoods().isEmpty());
+    }
+
     // Tests changing the date of the daily log
     @Test
     public void testSetDate() {
