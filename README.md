@@ -59,7 +59,16 @@ Removed a food from a daily log
 
 ---
 ## Phase 4: Task 3
-The one major thing I would have refactored in my code would have been to make both the Diary and DailyLog classes
-implement Iterable. They are both essentially lists of objects that required a few additional fields, and it would've made
-my for each loops in the ui classes easier to implement. This would have made the design more professional and in accordance
-to the principles we learned in the Design module.
+Both my Diary and DailyLog classes are essentially a list of objects with a few additional related fields, such as a date.
+Currently, when a for each loop is used, instead of iterating over Diary or DailyLog directly, the program is using 
+a getter method to retrieve the ArrayList field from the object and then iterating over that. However, this clearly causes 
+potential issues such as the private list potentially being modified without using the proper setters. Excess functionality
+is not being hidden from the user, defeating the purpose of the field being private and enabling users to improperly rely on
+accessing the field itself.
+
+Therefore, the one major thing I would have refactored in my code would have been to make both the Diary and DailyLog classes
+implement Iterable as it would have made my for each loop implementations in the ui class simpler and in accordance with CPSC 210
+design principles. After refactoring, both classes would override the iterator method and instead, return the iterator of their
+respective private ArrayList fields. Then, the for each loops in the ui class would be able to iterate directly over 
+Diary and DailyLog. Using this implementation wouldn't allow users of the classes to improperly access or modify the private
+list fields, fixing the identified issues.
